@@ -11,7 +11,11 @@
         "--socket=fallback-x11",
         "--socket=wayland",
         "--filesystem=host",
-        "--talk-name=org.freedesktop.Flatpak"
+        "--talk-name=org.freedesktop.Flatpak",
+        "--filesystem=xdg-run/dconf",
+        "--filesystem=~/.config/dconf:ro",
+        "--talk-name=ca.desrt.dconf",
+        "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
     ],
     "cleanup": [
         "/include",
@@ -26,6 +30,21 @@
         "*.a"
     ],
     "modules": [
+        {
+            "name": "media-keys",
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -D data/org.gnome.settings-daemon.plugins.media-keys.gschema.xml.in /app/share/glib-2.0/schemas/org.gnome.settings-daemon.plugins.media-keys.gschema.xml",
+                "sed -i -e 's/@GETTEXT_PACKAGE@/gnome-settings-daemon/g' /app/share/glib-2.0/schemas/org.gnome.settings-daemon.plugins.media-keys.gschema.xml"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/GNOME/gnome-settings-daemon/archive/GNOME_SETTINGS_DAEMON_3_36_1.tar.gz",
+                    "sha256": "e345411f79b4a1175349e144cc772c7a9eb7ab9ae3a542a73609bee471b72748"
+                }
+            ]
+        },
         {
             "name": "wrapper",
             "buildsystem": "simple",
@@ -51,8 +70,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/devalien/workspaces.git",
-                    "tag": "1.2.0",
-                    "commit": "919375876e4bc7625ddd4800c41750efac9c6ba3"
+                    "tag": "1.2.1",
+                    "commit": "b5f8357e16c0b49e4ec66073f3b4aa83374faabd"
                 }
             ],
             "post-install": [
