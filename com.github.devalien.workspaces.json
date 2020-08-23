@@ -70,8 +70,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/devalien/workspaces.git",
-                    "tag": "1.2.1",
-                    "commit": "b5f8357e16c0b49e4ec66073f3b4aa83374faabd"
+                    "tag": "1.3.0",
+                    "commit": "40891b4fa93c797e754b05c2de8d8ea14fa89dd4"
                 }
             ],
             "post-install": [
