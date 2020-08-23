@@ -75,7 +75,7 @@
                 }
             ],
             "post-install": [
-                "sed -i s:Exec=data/com.github.devalien.workspaces:Exec=/app/bin/workspaces-wrapper: /app/share/applications/com.github.devalien.workspaces.desktop"
+                "sed -i s:Exec=com.github.devalien.workspaces:Exec=/app/bin/workspaces-wrapper: /app/share/applications/com.github.devalien.workspaces.desktop"
             ]
         }
     ]
