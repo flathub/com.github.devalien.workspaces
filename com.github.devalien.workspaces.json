@@ -1,10 +1,10 @@
 {
     "app-id": "com.github.devalien.workspaces",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version": "19.08",
+    "runtime-version": "21.08",
     "sdk": "org.freedesktop.Sdk",
     "base": "io.elementary.BaseApp",
-    "base-version": "juno-19.08",
+    "base-version": "juno-21.08",
     "command": "workspaces-wrapper",
     "finish-args": [
         "--share=ipc",
@@ -40,8 +40,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/GNOME/gnome-settings-daemon/archive/GNOME_SETTINGS_DAEMON_3_36_1.tar.gz",
-                    "sha256": "e345411f79b4a1175349e144cc772c7a9eb7ab9ae3a542a73609bee471b72748"
+                    "url": "https://gitlab.gnome.org/GNOME/gnome-settings-daemon/-/archive/42.2/gnome-settings-daemon-42.2.tar.gz",
+                    "sha256": "11449dfb57e20a7a455e85ab0805ad13cf9cdc6b3670c9b166bd563447e0a207"
                 }
             ]
         },
