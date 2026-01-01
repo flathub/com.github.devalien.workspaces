@@ -1,10 +1,17 @@
 {
     "app-id": "com.github.devalien.workspaces",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version": "22.08",
-    "sdk": "org.freedesktop.Sdk",
+    "runtime-version": "25.08",
     "base": "io.elementary.BaseApp",
-    "base-version": "juno-22.08",
+    "base-version": "circe-25.08",
+    "sdk": "org.freedesktop.Sdk",
+    "sdk-extensions": [
+        "org.freedesktop.Sdk.Extension.vala"
+    ],
+    "build-options": {
+        "prepend-path": "/usr/lib/sdk/vala/bin/",
+        "prepend-ld-library-path": "/usr/lib/sdk/vala/lib"
+    },
     "command": "workspaces-wrapper",
     "finish-args": [
         "--share=ipc",
@@ -27,6 +34,16 @@
         "*.a"
     ],
     "modules": [
+        {
+            "name": "libgee",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/libgee/0.20/libgee-0.20.8.tar.xz",
+                    "sha256": "189815ac143d89867193b0c52b7dc31f3aa108a15f04d6b5dca2b6adfad0b0ee"
+                }
+            ]
+        },
         {
             "name": "media-keys",
             "buildsystem": "simple",
@@ -69,10 +86,17 @@
                     "url": "https://github.com/devalien/workspaces.git",
                     "tag": "3.1.0",
                     "commit": "d3d69be669b25a2f27074c0e8f6e056612c79eb3"
+                },
+                {
+                    "type": "patch",
+                    "path": "fix_appdata.patch"
                 }
             ],
-            "post-install": [
-                "sed -i s:Exec=com.github.devalien.workspaces:Exec=/app/bin/workspaces-wrapper: /app/share/applications/com.github.devalien.workspaces.desktop"
+            "post-install" : [
+                "sed -i s:Exec=com.github.devalien.workspaces:Exec=/app/bin/workspaces-wrapper: /app/share/applications/com.github.devalien.workspaces.desktop",
+                "mkdir -p /app/share/icons/hicolor/scalable/apps",
+                "mv /app/share/icons/hicolor/64x64/apps/${FLATPAK_ID}.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg",
+                "find /app/share/icons/hicolor -type f -not -path \"*scalable*\" -not -path \"*actions*\" -name \"*.svg\" -delete"
             ]
         }
     ]
